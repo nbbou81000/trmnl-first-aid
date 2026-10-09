@@ -1,4 +1,6 @@
 {%- comment -%} First Aid Cards: pick one card per 5-minute slot, without repeats until every card has been shown. {%- endcomment -%}
+{%- assign tok_ems = "{" | append: "EMS}" -%}
+{%- assign tok_poison = "{" | append: "POISON}" -%}
 {%- assign ctry = country | default: "us" | downcase -%}
 {%- assign num = numbers[ctry] -%}
 {%- assign ems = num.ems | default: "112" -%}
@@ -40,8 +42,8 @@
   {%- endfor -%}
 {%- endif -%}
 
-{%- assign card_title = card.t | replace: "{EMS}", ems -%}
-{%- assign card_when = card.w | replace: "{EMS}", ems -%}
+{%- assign card_title = card.t | replace: tok_ems, ems -%}
+{%- assign card_when = card.w | replace: tok_ems, ems -%}
 {%- if has_img -%}
   {%- assign credit_line = ui.image | append: ": " | append: img_credit -%}
 {%- else -%}

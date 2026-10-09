@@ -11,7 +11,7 @@
       <div class="item">
         <div class="meta"><span class="index">{{ forloop.index }}</span></div>
         <div class="content">
-          <span class="description description--small">{{ s | replace: "{EMS}", ems | replace: "{POISON}", poison }}</span>
+          <span class="description description--small">{{ s | replace: tok_ems, ems | replace: tok_poison, poison }}</span>
         </div>
       </div>
       {%- endfor %}
