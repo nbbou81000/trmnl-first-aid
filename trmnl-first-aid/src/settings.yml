@@ -1,0 +1,67 @@
+---
+strategy: polling
+polling_verb: get
+polling_url: https://nbbou81000.github.io/trmnl-first-aid/cards-{{ language }}.json
+polling_headers: ''
+polling_body: ''
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+name: First Aid Cards
+refresh_interval: 15
+custom_fields:
+- keyname: about
+  name: About This Plugin
+  field_type: author_bio
+  category: life,learning
+  description: A different first aid card on every refresh, from hands-only CPR and choking to burns, strokes and heat stroke. 129 cards based on the 2025 American Heart Association guidelines, with illustrations from U.S. Army and FEMA training manuals, in English, German, French or Spanish, with the emergency number of your country. Not a substitute for first aid training. Images credited on each card and in the online catalog.
+  github_url: https://github.com/nbbou81000/trmnl-first-aid
+  learn_more_url: https://nbbou81000.github.io/trmnl-first-aid/
+- keyname: language
+  field_type: select
+  name: Language
+  description: Language of the cards.
+  options:
+  - 'English: en'
+  - 'Deutsch: de'
+  - 'Français: fr'
+  - 'Español: es'
+  default: en
+- keyname: country
+  field_type: select
+  name: Country
+  description: Sets the emergency and poison control numbers shown on the cards.
+  options:
+  - 'United States: us'
+  - 'Canada: ca'
+  - 'Mexico: mx'
+  - 'United Kingdom: gb'
+  - 'Ireland: ie'
+  - 'Germany: de'
+  - 'Austria: at'
+  - 'Switzerland: ch'
+  - 'France: fr'
+  - 'Belgium: be'
+  - 'Luxembourg: lu'
+  - 'Spain: es'
+  - 'Portugal: pt'
+  - 'Italy: it'
+  - 'Netherlands: nl'
+  - 'Australia: au'
+  - 'New Zealand: nz'
+  - 'Other country (112): eu'
+  default: us
+- keyname: self_exam
+  field_type: select
+  name: Self-exam cards
+  description: Include the breast and testicular self-check cards (anatomical drawings).
+  options:
+  - 'No: no'
+  - 'Yes: yes'
+  default: 'no'
+- keyname: pin_card
+  field_type: string
+  name: Pin a card
+  description: Optional. Always show one card, by its id (for example cpr-adult). Ids are listed in the online catalog. Leave empty for rotation.
+  optional: true
+  placeholder: cpr-adult

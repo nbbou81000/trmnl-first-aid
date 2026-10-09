@@ -1,0 +1,6 @@
+{
+  "en": { "app": "First Aid Cards", "call": "Call", "poison": "Poison control", "disclaimer": "Not a substitute for first aid training", "guidance": "Guidance: AHA 2025 / American Red Cross", "image": "Image" },
+  "de": { "app": "Erste-Hilfe-Karten", "call": "Notruf", "poison": "Giftnotruf", "disclaimer": "Ersetzt keinen Erste-Hilfe-Kurs", "guidance": "Leitlinie: AHA 2025 / Amerikanisches Rotes Kreuz", "image": "Bild" },
+  "fr": { "app": "Fiches de premiers secours", "call": "Appelez le", "poison": "Centre antipoison", "disclaimer": "Ne remplace pas une formation aux premiers secours", "guidance": "Référence : AHA 2025 / Croix-Rouge américaine", "image": "Image" },
+  "es": { "app": "Fichas de primeros auxilios", "call": "Llama al", "poison": "Toxicología", "disclaimer": "No sustituye un curso de primeros auxilios", "guidance": "Referencia: AHA 2025 / Cruz Roja Americana", "image": "Imagen" }
+}

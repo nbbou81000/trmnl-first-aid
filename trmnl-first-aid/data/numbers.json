@@ -1,0 +1,20 @@
+{
+  "us": { "name": "United States", "ems": "911", "poison": "1-800-222-1222" },
+  "ca": { "name": "Canada", "ems": "911" },
+  "mx": { "name": "Mexico", "ems": "911" },
+  "gb": { "name": "United Kingdom", "ems": "999" },
+  "ie": { "name": "Ireland", "ems": "112" },
+  "de": { "name": "Germany", "ems": "112" },
+  "at": { "name": "Austria", "ems": "144", "poison": "+43 1 406 43 43" },
+  "ch": { "name": "Switzerland", "ems": "144", "poison": "145" },
+  "fr": { "name": "France", "ems": "15" },
+  "be": { "name": "Belgium", "ems": "112", "poison": "070 245 245" },
+  "lu": { "name": "Luxembourg", "ems": "112" },
+  "es": { "name": "Spain", "ems": "112", "poison": "91 562 04 20" },
+  "pt": { "name": "Portugal", "ems": "112", "poison": "800 250 250" },
+  "it": { "name": "Italy", "ems": "112" },
+  "nl": { "name": "Netherlands", "ems": "112" },
+  "au": { "name": "Australia", "ems": "000", "poison": "13 11 26" },
+  "nz": { "name": "New Zealand", "ems": "111", "poison": "0800 764 766" },
+  "eu": { "name": "Other country (112)", "ems": "112" }
+}

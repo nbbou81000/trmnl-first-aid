@@ -1,0 +1,49 @@
+{%- comment -%} First Aid Cards: pick one card per 5-minute slot, without repeats until every card has been shown. {%- endcomment -%}
+{%- assign ctry = country | default: "us" | downcase -%}
+{%- assign num = numbers[ctry] -%}
+{%- assign ems = num.ems | default: "112" -%}
+{%- assign poison = num.poison | default: ems -%}
+{%- assign show_self = self_exam | default: "no" | downcase -%}
+
+{%- assign total = 0 -%}
+{%- for c in cards -%}
+  {%- if c.cat != "selfexam" or show_self == "yes" -%}{%- assign total = total | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+{%- if total == 0 -%}{%- assign total = 1 -%}{%- endif -%}
+
+{%- assign now = trmnl.system.timestamp_utc | plus: 0 -%}
+{%- if now < 1000000000 -%}{%- assign now = "now" | date: "%s" | plus: 0 -%}{%- endif -%}
+{%- assign slot = now | divided_by: 300 | floor -%}
+{%- assign pick = slot | times: 7919 | plus: 13 | modulo: total -%}
+
+{%- assign card = cards | first -%}
+{%- assign n = 0 -%}
+{%- for c in cards -%}
+  {%- if c.cat != "selfexam" or show_self == "yes" -%}
+    {%- if n == pick -%}{%- assign card = c -%}{%- endif -%}
+    {%- assign n = n | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if pin_card != blank -%}
+  {%- assign pin = pin_card | strip | downcase -%}
+  {%- for c in cards -%}{%- if c.id == pin -%}{%- assign card = c -%}{%- endif -%}{%- endfor -%}
+{%- endif -%}
+
+{%- assign has_img = false -%}
+{%- assign img_url = "" -%}
+{%- assign img_credit = "" -%}
+{%- assign isz = card.imgs | size -%}
+{%- if isz > 0 -%}
+  {%- assign ii = slot | divided_by: total | floor | modulo: isz -%}
+  {%- for im in card.imgs -%}
+    {%- if forloop.index0 == ii -%}{%- assign img_url = img_base | append: im.f -%}{%- assign img_credit = im.c -%}{%- assign has_img = true -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign card_title = card.t | replace: "{EMS}", ems -%}
+{%- assign card_when = card.w | replace: "{EMS}", ems -%}
+{%- if has_img -%}
+  {%- assign credit_line = ui.image | append: ": " | append: img_credit -%}
+{%- else -%}
+  {%- assign credit_line = ui.guidance -%}
+{%- endif -%}

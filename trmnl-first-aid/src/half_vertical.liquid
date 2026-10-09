@@ -1,0 +1,32 @@
+<div class="layout layout--col gap--small">
+  {%- if has_img %}
+  <div class="flex flex--center w--full h--[36cqh]">
+    <img class="image image-dither image--contain w--full h--full" src="{{ img_url }}">
+  </div>
+  {%- endif %}
+  <span class="title title--small" data-clamp="2">{{ card_title }}</span>
+  <div class="columns" data-overflow-max-cols="1">
+    <div class="column">
+      {%- for s in card.s %}
+      <div class="item">
+        <div class="meta"><span class="index">{{ forloop.index }}</span></div>
+        <div class="content">
+          <span class="description description--small">{{ s | replace: "{EMS}", ems | replace: "{POISON}", poison }}</span>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- unless has_img %}
+  <div class="outline flex flex--row flex--center gap w--full">
+    <span class="label">{{ ui.call }}</span>
+    <span class="value value--large">{{ ems }}</span>
+  </div>
+  {%- endunless %}
+</div>
+
+<div class="title_bar">
+  <img class="image" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiByeD0iNCIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik0xMCA1aDR2NWg1djRoLTV2NWgtNHYtNUg1di00aDV6IiBmaWxsPSIjZmZmIi8+PC9zdmc+">
+  <span class="title">{{ ui.app }}</span>
+  <span class="instance">{{ credit_line }}</span>
+</div>

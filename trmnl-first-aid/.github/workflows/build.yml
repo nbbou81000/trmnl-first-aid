@@ -1,0 +1,53 @@
+name: Build cards
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_images:
+        description: "Re-download and re-convert every image"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "scripts/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-cards
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci || npm install
+
+      - name: Build images, JSON and gallery
+        env:
+          FORCE_IMAGES: ${{ inputs.force_images }}
+          PAGES_BASE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: node scripts/build.mjs
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "Build cards $(date -u +%Y-%m-%d)"
+            git push
+          fi
